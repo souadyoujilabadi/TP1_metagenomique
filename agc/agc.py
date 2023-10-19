@@ -164,7 +164,7 @@ def abundance_greedy_clustering(amplicon_file: Path, minseqlen: int, mincount: i
         # Iterate over the existing OTUs
         for otu in otus:
             # Align the sequence with the OTU using global alignment
-            alignment = nw.global_align(seq, otu[0])
+            alignment = nw.global_align(seq, otu[0], gap_open=-1, gap_extend=-1, matrix=str(Path(__file__).parent / "MATCH"))
             # Calculate the identity rate between the sequence and the OTU
             identity_rate = get_identity(alignment)
             # If identity rate is >= to 97, the sequence is similar to the OTU
